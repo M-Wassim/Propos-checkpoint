@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 
 
 
-const Profile =(props,{fullName='test',bio='test',profession='test',handleName})=> {
-    handleName=()=>{
-        alert(`bonjour ${fullName}!!`)
-    }
+const Profile =(props)=> {
    
     return (
-
+       
     
 <div >
+{props.handleNameFn(props.fullName)}
+  
    <div style={{backgroundColor:'Grey',width:'250px',margin:'auto'}}>
 
       {props.children}
     
-    <h2 style={{fontFamily:'monospace'}}>Name :  {fullName} </h2>
-    <h2 style={{fontFamily:'monospace'}}> Bio :{bio}</h2>
-    <h2 style={{fontFamily:'monospace'}}>Profession : {profession}</h2>
-   {/* <button onClick={handleName}>show name</button>  */}
-   {handleName()}
+    <h2 style={{fontFamily:'monospace'}}>Name :  {props.fullName} </h2>
+    <h2 style={{fontFamily:'monospace'}}> Bio :{props.bio}</h2>
+    <h2 style={{fontFamily:'monospace'}}>Profession : {props.profession}</h2>
+
+   {/* <button onClick={()=>props.handleNameFn(props.fullName)}>show name</button>  */}
+
  
    </div>
 </div>
@@ -29,11 +29,18 @@ const Profile =(props,{fullName='test',bio='test',profession='test',handleName})
    
 }
 
+Profile.defaultProps={
+fullName:'test' ,
+bio:'test',
+profession:'test'
+
+}
+
 Profile.propTypes={
-fullName:PropTypes.string,
+fullName:PropTypes.string.isRequired,
 bio : PropTypes.string,
 profession : PropTypes.string,
-handleName : PropTypes.func
+handleNameFn : PropTypes.func
 
 };
 
